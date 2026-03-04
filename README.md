@@ -19,9 +19,27 @@
 
 ## Why I built this / 初心
 
-*(This section is reserved for the author's story. You can edit this file to share your thoughts, the philosophy of Silicon-based Collaboration, or why you want to empower AI with Product Thinking here.)*
+> 这个文档里只有这段是手写的，写这句话就是希望吸引你花30s读一下这段话
+> This is the only section of this documentation written by a human. I hope it’s worth 30 seconds of your time.
 
-*(此处预留给作者的故事。请直接编辑此文件，在这里分享你的初心、关于“硅基协作”的思考，或者为什么想赋予 AI 产品思维。)*
+我为什么要做这个项目？
+
+AI能替代人类完成很多工作已经成为一个共识，目前只是还需要在如何重新定义工作和组织上花点时间。
+
+我作为一个前大厂的产品经理，虽然也体会到了AI在一些场景下的帮助，但我自己的工作并没有被完全颠覆掉，我希望**加速**这一天的到来，让我从工作中的脏活累活里面解脱出来，从而能更关注我的工作中那些**没有被清晰定义的事情**，然后有更多时间追求**humanity**。
+
+希望大家用得开心，也希望我们都能早点从“生存”中毕业
+
+
+Why I Built This Project? 
+
+It is now a consensus that AI will eventually replace most human labor; we are simply in a transitional phase of redefining "work" and "organizations."
+
+As a former Product Manager from a Tech background, I’ve felt the assistance of AI in fragmented scenarios, but my core workflow has yet to be fully disrupted. I want to accelerate that disruption. 
+
+My goal is to liberate us from the "grunt work"—the repetitive and mundane—so we can dedicate our energy to the undefined challenges and reclaim more time for humanity.
+
+I hope you find this tool useful. May we all "graduate" from the struggle for survival sooner rather than later.
 
 ---
 
