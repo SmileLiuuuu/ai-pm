@@ -140,7 +140,7 @@ The goal: a stakeholder looking at the mockup should immediately understand what
 ## Iteration Workflow
 
 ```
-1. Scene 4 (Interaction Design) produces: page list + information hierarchy
+1. Scene 3 (Interaction Design) + Scene 4 (Entity Definition) produce: page list, information hierarchy, entity model
         ↓
 2. Scene 5 produces: design-tokens.md + first-pass HTML mockups
         ↓
@@ -148,7 +148,7 @@ The goal: a stakeholder looking at the mockup should immediately understand what
         ↓
 4. Design confirmed: write handoff note in docs/03_DESIGN/handoff/
         ↓
-5. Development: Claude Code reads handoff note + mockup, implements in src/
+5. Development: dev agent reads handoff note + mockup, implements in src/
         ↓
 6. If visual tweaks needed post-implementation: update mockup first, then src/
 ```
@@ -190,13 +190,14 @@ File: `docs/03_DESIGN/handoff/{screen-name}.md`
 
 ---
 
-## Scene 4 → Scene 5 Transition
+## Scene 3/4 → Scene 5 Transition
 
-Before starting mockups, confirm this checklist is complete from Scene 4:
+Before starting mockups, confirm this checklist is complete from Scene 3 (Interaction Design) and Scene 4 (Entity Definition):
 
 - [ ] Screen list defined (from Screen Tree in Framework PRD)
 - [ ] Each screen's information hierarchy described
 - [ ] Primary interactions per screen listed
+- [ ] Entity model defined and validated against page structure
 - [ ] Design tokens drafted (colors, type, spacing)
 
-If any item is missing, return to Scene 4 before generating HTML.
+If any item is missing, return to the relevant scene before generating HTML.

@@ -59,17 +59,17 @@ The skill divides the product delivery process into 5 continuous **Scenes**, pro
 - **目标：** 设计关键用户旅程（CUJs），定义 MVP 范围（基于场景而非功能列表）。
 - **产出：** Framework PRD（框架层需求文档）。
 
-### 3. Entity Definition / 实体定义
-- **Goal:** Abstract data models from business flows; design State Machines.
-- **Output:** Entity Graphs & State Tables.
-- **目标：** 基于业务流定义数据模型，设计状态机（State Machines）和流转规则。
-- **产出：** 实体关系图与状态表。
-
-### 4. Interaction Design / 交互设计
-- **Goal:** Define the Screen Tree and validate cross-module consistency.
+### 3. Interaction Design / 交互设计
+- **Goal:** Sketch page structure, define the Screen Tree, and validate cross-module consistency.
 - **Output:** Interaction Logic & Screen Hierarchy.
-- **目标：** 定义屏幕流（Screen Tree），检查模块间的交互一致性。
+- **目标：** 勾勒页面结构，定义屏幕流（Screen Tree），检查模块间的交互一致性。
 - **产出：** 交互逻辑与页面层级。
+
+### 4. Entity Definition / 实体定义
+- **Goal:** Abstract data models from business flows and page structure; design State Machines; validate page structure against entity model.
+- **Output:** Entity Graphs & State Tables.
+- **目标：** 基于业务流和页面结构定义数据模型，设计状态机（State Machines），反向验证页面结构的合理性。
+- **产出：** 实体关系图与状态表。
 
 ### 5. Design & Handoff / 设计与交付
 - **Goal:** Generate high-fidelity HTML Mockups and write detailed Handoff Notes for developers.
@@ -134,12 +134,13 @@ When used in a new directory, it will suggest initializing the project structure
 当你第一次在一个新目录中使用时，它会自动建议初始化项目结构：
 
 ```text
-.ai_pm/             # Project Memory (Auto-maintained, add to .gitignore) / 项目记忆（自动维护，请忽略）
-docs/               # Project Deliverables / 项目文档
-  01_STRATEGY/      # Strategy & Value / 立项与战略
-  02_PRD/           # Requirements / 需求文档
-  03_DESIGN/        # Design & Specs / 设计稿与交付说明
-  04_RESOURCES/     # Research & References / 参考资料
+docs/                   # Project Deliverables / 项目文档
+  00_MEMORY/            # Explicit Memory (fact snapshots & session logs) / 显式记忆（事实快照与会话日志）
+  01_STRATEGY/          # Strategy & Value / 立项与战略
+  02_PRD/               # Requirements / 需求文档
+  03_DESIGN/            # Design & Specs / 设计稿与交付说明
+  04_RESOURCES/         # Research & References / 参考资料
+  TODO.md               # Single source of tasks / 任务清单
 ```
 
 ---

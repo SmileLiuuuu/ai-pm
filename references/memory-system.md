@@ -166,6 +166,8 @@ At these moments the AI scans `SESSION_MEMORY.md`, surfaces up to 3 candidate pa
 
 **Written when:** Consensus Detection fires — user signals agreement on a business judgment.
 
+**Critical rule:** DECISIONS are **never written without explicit user confirmation**. The AI may draft a decision, but it must present the draft and wait for the user to approve before writing to `DECISIONS.md`. If the decision overrides or conflicts with an existing Context entry, the decision must explicitly reference the affected `[CNT-XXX]` and state the override reason.
+
 ---
 
 ## Project Initialization Protocol
@@ -207,4 +209,10 @@ Confirm to user: `"Project '{project_id}' initialized. Memory structure ready in
 | **Objective facts** | What happened & User's raw input | `docs/00_MEMORY/SESSION_MEMORY.md`, `docs/00_MEMORY/CONTEXT_SNAPSHOT.md` |
 | **Logic assets** | Conclusions — decisions, flows, specs | `docs/01_STRATEGY/DECISIONS.md`, other `docs/` |
 
-Facts layer = history. Logic layer = truth. When they conflict, logic layer wins (but history explains why).
+Facts layer = history. Logic layer = conclusions.
+
+**When they conflict — stop and flag, do not auto-resolve.** The AI must:
+1. Surface the conflict to the user: *"I noticed [DEC-XXX] may conflict with the earlier constraint [CNT-XXX] — here's what I see: [brief description]. How would you like to handle this?"*
+2. Wait for the user's judgment.
+3. If the user decides to override: record a new decision in `DECISIONS.md` that explicitly references `[CNT-XXX]` and explains why the override is justified.
+4. The original Context entry is never deleted or modified — it remains as historical evidence.
