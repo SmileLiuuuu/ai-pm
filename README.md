@@ -77,11 +77,37 @@ The skill divides the product delivery process into 5 continuous **Scenes**, pro
 - **目标：** 生成高保真 HTML Mockups，编写给开发的详细交付说明（Handoff Notes）。
 - **产出：** 可直接预览的 UI 界面与开发文档。
 
+### 6. Meta-driven Coaching / 通过 Meta 教这个“产品经理”做事
+- **Goal:** Let you actively shape how this AI PM works via `[Meta]` instructions.
+- **Output:** A Product Manager agent that learns your preferred workflow, style, and decision principles.
+- **目标：** 通过在对话中输入 `[Meta]`，手把手“教会”这个 AI 产品经理按照你的方式做事。
+- **产出：** 一个会逐步适应你偏好、方法论和决策习惯的产品经理智能体，而不是固定模板。
+
 ---
 
 ## Installation / 安装指南
 
-### Option 1: Cursor (Recommended / 推荐)
+### Recommended: One-line install / 一键安装与更新（推荐）
+
+在终端中粘贴并执行这一行命令（适用于 Mac / Linux）：
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/SmileLiuuuu/ai-pm/main/install.sh | bash
+```
+
+脚本会自动完成以下工作：
+
+- 自动检测你是在 **Cursor** 还是 **Claude Code** 环境；
+- 首次安装时，自动将本仓库克隆到合适的位置：
+  - Cursor: `~/.cursor/skills/ai_pm`
+  - Claude Code: `~/.claude/skills/ai-pm`
+- 如果已经安装过且来源是本仓库：
+  - 自动检查是否有新版本；
+  - 有更新则执行 `git pull`，无更新则提示 `Already up to date`。
+
+> 建议：后续每次想更新到最新版，只需要再次运行同一行命令即可。
+
+### Option 1: Cursor (Manual) / 手动方式（Cursor）
 
 1.  Locate your Cursor skills directory (usually `~/.cursor/skills/`). Create it if it doesn't exist.
     找到你的 Cursor 技能目录（通常在 `~/.cursor/skills/`，如果没有请新建）。
@@ -95,7 +121,7 @@ The skill divides the product delivery process into 5 continuous **Scenes**, pro
     *   *Note: You can also copy the content of `SKILL.md` into your `.cursorrules` or System Prompt.*
     *   *注：你也可以直接将 `SKILL.md` 的内容复制到你的 `.cursorrules` 或系统提示词中。*
 
-### Option 2: Claude Code
+### Option 2: Claude Code (Manual) / 手动方式（Claude Code）
 
 1.  Ensure [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) is installed.
     确保你已安装 Claude Code。
