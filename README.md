@@ -18,7 +18,6 @@
 ---
 
 ## Why I built this / 初心
-
 > 这个文档里只有这段是手写的，写这句话就是希望吸引你花30s读一下这段话
 > This is the only section of this documentation written by a human. I hope it’s worth 30 seconds of your time.
 

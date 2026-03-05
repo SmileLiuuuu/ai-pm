@@ -50,45 +50,71 @@ Layer 1 lives in your host environment's global config, not in any project direc
 1. When a Framework PRD is finalized
 2. When a project phase closes
 
-At these moments the AI scans `GENEALOGY_LOG.json` and `SESSION_MEMORY.md`, surfaces up to 3 candidate patterns, and writes only what you confirm. Never auto-written.
+At these moments the AI scans `SESSION_MEMORY.md`, surfaces up to 3 candidate patterns, and writes only what you confirm. Never auto-written.
 
 ---
 
 ## Layer 2 — Project Memory
 
-**Location:** `{project_root}/.ai_pm/`
-**Gitignore:** Always add `.ai_pm/` to `.gitignore` — this is internal working memory, not a project deliverable.
+**Location:** `{project_root}/docs/00_MEMORY/`
+**Visibility:** Visible to user, committed to git. This is the explicit memory of the project.
 
 ---
 
-### SESSION_MEMORY.md
+### docs/00_MEMORY/CONTEXT_SNAPSHOT.md
 
-Project history log. **Append-only — never overwrite past entries.**
+**Role:** The "Evidence Locker". Records raw user inputs, constraints, and story samples that serve as the factual basis for decisions. **Append-only.**
 
 ```markdown
-# Project: {project_id} — Session Log
+# Context Snapshots
+> 事实快照库。记录关键的用户原始输入，作为决策依据。
 
-## Update Rules
-- Append only. Never delete historical entries.
-- One entry per working session or major milestone.
+## [CNT-001] 2026-03-05
+> User: "我希望用户在断网时也能看到缓存的最近 5 条记录，但不能编辑。"
+- **Tags**: #offline #constraint
+- **Ref**: Session 2026-03-05 (Value Discovery)
 
-## {YYYY-MM-DD} · {Session Theme}
-
-### Key Discussions
-- [Core insight or decision reached]
-
-### Artifacts Created / Modified
-- `path/to/file`: [what changed and why]
-
-### Next Steps
-- [Concrete, specific next action]
+## [CNT-002] 2026-03-06
+> User: "这个流程太复杂了，我想要的是一键完成，不需要确认。"
+- **Tags**: #ux #simplification
+- **Ref**: Session 2026-03-06 (Logic Structuring)
 ```
+
+**Update trigger:** 
+- User tells a specific story (Scene 1).
+- User sets a hard constraint.
+- User explicitly corrects a misunderstanding.
+
+---
+
+### docs/00_MEMORY/SESSION_MEMORY.md
+
+**Role:** The "Narrative Log". Records what happened, connecting facts (Context) to conclusions (Decisions). **Append-only.**
+
+```markdown
+# Project Session Log
+
+## 2026-03-05 · 离线模式讨论
+- **Discussion**: 确认了离线缓存策略。
+- **Evidence**: 基于 [CNT-001] 的用户约束。
+- **Outcome**: 
+  - 决定采用 LocalStorage 缓存方案 (见 DECISIONS.md -> DEC-005)
+  - 拒绝了 SQLite 方案 (太重)
+  - 新增 TODO: "验证 LocalStorage 容量限制"
+
+## 2026-03-06 · 交互简化
+- **Discussion**: 优化下单流程。
+- **Evidence**: [CNT-002] 用户反馈。
+- **Outcome**: 移除确认弹窗，改为 Toast 撤回机制。
+```
+
+**Update trigger:** End of a meaningful discussion loop or session.
 
 ---
 
 ### docs/TODO.md
 
-Project-wide todo list. Lives in `docs/`, committed to git — visible and versioned alongside other deliverables.
+**Role:** The "Action List". Single source of truth for tasks.
 
 ```markdown
 # TODO — {project_id}
@@ -120,76 +146,25 @@ Project-wide todo list. Lives in `docs/`, committed to git — visible and versi
 
 ---
 
-### GENEALOGY_LOG.json
-
-Decision lineage. `user_original_quote` is sacred — never paraphrase or summarize.
-
-```json
-{
-  "decisions": [
-    {
-      "id": "DEC-001",
-      "timestamp": "2026-03-01",
-      "user_original_quote": "Verbatim words — never paraphrase",
-      "decision_summary": "One sentence: what was decided",
-      "logic_pillar": "value_anchor | flow_logic | entity_definition | interaction | design",
-      "decision_type": "strategic | boundary | interaction_detail | visual",
-      "residual_risk": "Known gaps or open questions from this decision",
-      "status": "closed | pending_alignment | suspended",
-      "linked_doc": "path/to/relevant/section — optional"
-    }
-  ]
-}
-```
-
-**Update trigger:** User signals consensus ("ok", "sounds good", "let's go with that") → generate ID → log immediately.
-
----
-
 ### docs/01_STRATEGY/DECISIONS.md
 
-Human-readable record of business judgments. Committed to git — this is the authoritative record of *why* decisions were made, readable by the whole team.
+**Role:** The "Rule Book". Human-readable record of business judgments.
 
 ```markdown
 # Business Decisions — {project_id}
 
 ## DEC-001 · {Short decision title}
 - **Date:** 2026-03-01
-- **Original quote:** "User's verbatim words"
+- **Context:** Based on [CNT-001]
 - **Decision:** One sentence summary of what was decided
 - **Rationale:** Why this direction, not alternatives
 - **Trade-offs accepted:** What was explicitly de-prioritized
 - **Residual risk:** Known open questions from this decision
 
 ---
-
-## DEC-002 · {Short decision title}
-...
 ```
 
 **Written when:** Consensus Detection fires — user signals agreement on a business judgment.
-**Relationship to GENEALOGY_LOG.json:** The log is the raw internal record; DECISIONS.md is the structured, readable version. Both are updated together.
-
----
-
-### CONTEXT_SNAPSHOT.json
-
-Current session state. Overwritten each session.
-
-```json
-{
-  "project_id": "my-project",
-  "current_scene": "value_discovery | logic_structuring | entity_definition | interaction_design | design_handoff",
-  "active_topic": "Brief description of current discussion focus",
-  "suspended_threads": [
-    {
-      "thread": "Description of a paused branch",
-      "resume_trigger": "What would bring this back"
-    }
-  ],
-  "last_updated": "2026-03-01"
-}
-```
 
 ---
 
@@ -199,63 +174,29 @@ When a new `project_id` is mentioned for the first time, create this skeleton in
 
 ```
 {project_root}/
-├── .ai_pm/
-│   ├── SESSION_MEMORY.md      ← header + rules, no entries yet
-│   ├── GENEALOGY_LOG.json     ← { "decisions": [] }
-│   └── CONTEXT_SNAPSHOT.json ← scene: value_discovery, empty threads
-├── .gitignore                 ← include .ai_pm/ entry
-└── docs/
-    ├── 01_STRATEGY/           ← 立项与战略记忆（见 references/strategy-foundation.md）
-    │   └── DECISIONS.md       ← empty, filled as business judgments are made；另需维护立项文档（价值与范围）
-    ├── 02_PRD/
-    │   └── README.md
-    ├── 03_DESIGN/             ← 设计与中间产物（见 references/design-artifacts.md）
-    │   ├── design-tokens.md   ← placeholder, fill in Scene 5
-    │   ├── screens/
-    │   ├── handoff/
-    │   ├── ui_ux/
-    │   ├── prototypes/
-    │   ├── ai_prompts/
-    │   └── tech_design/
-    ├── 04_RESOURCES/          ← competitor research, raw inputs
-    └── TODO.md                ← initialized with empty sections
+├── docs/
+│   ├── 00_MEMORY/             ← [NEW] Explicit Memory
+│   │   ├── CONTEXT_SNAPSHOT.md ← Header + "事实快照库..."
+│   │   └── SESSION_MEMORY.md   ← Header + "Project Session Log"
+│   ├── 01_STRATEGY/           ← 立项与战略记忆
+│   │   └── DECISIONS.md       ← empty, filled as business judgments are made
+│   ├── 02_PRD/
+│   │   └── README.md
+│   ├── 03_DESIGN/             ← 设计与中间产物
+│   │   ├── design-tokens.md   ← placeholder
+│   │   ├── screens/
+│   │   ├── handoff/
+│   │   ├── ui_ux/
+│   │   ├── prototypes/
+│   │   ├── ai_prompts/
+│   │   └── tech_design/
+│   ├── 04_RESOURCES/          ← competitor research, raw inputs
+│   └── TODO.md                ← initialized with empty sections
 ```
 
-**.gitignore minimum content:**
-```
-.ai_pm/
-```
+**No .gitignore changes needed** (docs are meant to be committed).
 
-Confirm to user: `"Project '{project_id}' initialized. Ready to start Value Discovery."`
-
----
-
-## 01_STRATEGY — 立项与战略记忆
-
-**定位：** 存放立项与价值决策的依据信息，便于项目推进一段时间后仍能回顾「当时为什么这么做」。
-
-| 内容 | 说明 |
-|------|------|
-| **立项文档** | 价值与范围类文档（如 value_and_scope），沉淀价值锚点、范围边界、目标用户与场景、痛点与成功指标、关键结构性决策；结构不强制，以沟通中明确的信息为准。 |
-| **DECISIONS.md** | 业务决策的可读记录，与 GENEALOGY_LOG 对应；重大价值/范围判断可同时在立项文档与 DECISIONS 中保留。 |
-
-详细说明 → [references/strategy-foundation.md](strategy-foundation.md)
-
----
-
-## 03_DESIGN — 设计与中间产物（PRD → 开发）
-
-**定位：** PRD 定稿之后、真正开始开发之前的设计与中间产物存放地。
-
-| 子目录/文件 | 内容 |
-|-------------|------|
-| `design-tokens.md`、`screens/`、`handoff/` | 设计 token、定稿界面、每屏交付说明（见 design-handoff.md） |
-| `ui_ux/` | 设计指导文档（页面拆分、每页功能/内容/字段）、设计原则；可含 `[待定项-XXX]`，解决后按 design-artifacts 整理（结论入文档、DECISIONS、PRD 同步、TODO） |
-| `prototypes/` | 核心用户流程的线稿；从流程提取的关键组件的 demo（AI 生成，便于对 demo 提修改建议） |
-| `ai_prompts/` | 模拟的 AI Prompt：话术草稿、示例对话、边界 case |
-| `tech_design/` | 技术设计文档：架构、接口约定、数据流、技术选型与风险 |
-
-详细说明（含待定项标记与整理策略）→ [references/design-artifacts.md](design-artifacts.md)
+Confirm to user: `"Project '{project_id}' initialized. Memory structure ready in docs/00_MEMORY/."`
 
 ---
 
@@ -263,7 +204,7 @@ Confirm to user: `"Project '{project_id}' initialized. Ready to start Value Disc
 
 | Sub-layer | Records | Files |
 |-----------|---------|-------|
-| **Objective facts** | What happened — conversations, tasks, output locations | `SESSION_MEMORY.md` |
-| **Logic assets** | Conclusions — decisions, business judgments, flows agreed | `GENEALOGY_LOG.json` (raw), `docs/01_STRATEGY/DECISIONS.md` (human-readable), other `docs/` |
+| **Objective facts** | What happened & User's raw input | `docs/00_MEMORY/SESSION_MEMORY.md`, `docs/00_MEMORY/CONTEXT_SNAPSHOT.md` |
+| **Logic assets** | Conclusions — decisions, flows, specs | `docs/01_STRATEGY/DECISIONS.md`, other `docs/` |
 
-Facts layer = history. Logic layer = truth. When they conflict, logic layer wins.
+Facts layer = history. Logic layer = truth. When they conflict, logic layer wins (but history explains why).
