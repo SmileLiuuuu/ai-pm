@@ -177,28 +177,29 @@ When a new `project_id` is mentioned for the first time, create this skeleton in
 ```
 {project_root}/
 ├── docs/
-│   ├── 00_MEMORY/             ← [NEW] Explicit Memory
-│   │   ├── CONTEXT_SNAPSHOT.md ← Header + "事实快照库..."
-│   │   └── SESSION_MEMORY.md   ← Header + "Project Session Log"
-│   ├── 01_STRATEGY/           ← 立项与战略记忆
-│   │   └── DECISIONS.md       ← empty, filled as business judgments are made
-│   ├── 02_PRD/
-│   │   └── README.md
-│   ├── 03_DESIGN/             ← 设计与中间产物
-│   │   ├── design-tokens.md   ← placeholder
+│   ├── 00_MEMORY/               ← [NEW] Explicit Memory
+│   │   ├── CONTEXT_SNAPSHOT.md  ← Header + "事实快照库..."
+│   │   └── SESSION_MEMORY.md    ← Header + "Project Session Log"
+│   ├── 01_STRATEGY/             ← 立项与战略记忆
+│   │   └── DECISIONS.md         ← empty, filled as business judgments are made
+│   ├── 02_PRD/                  ← PRD docs — framework + feature level
+│   │   ├── README.md            ← 目录与各 PRD 文件用途说明（不再承载 Framework PRD 正文）
+│   │   └── framework-prd.md     ← 默认的 Framework PRD 主文档（可按项目约定更名）
+│   ├── 03_DESIGN/               ← 设计与中间产物
+│   │   ├── design-tokens.md     ← placeholder
 │   │   ├── screens/
 │   │   ├── handoff/
 │   │   ├── ui_ux/
 │   │   ├── prototypes/
 │   │   ├── ai_prompts/
 │   │   └── tech_design/
-│   ├── 04_RESOURCES/          ← competitor research, raw inputs
-│   └── TODO.md                ← initialized with empty sections
+│   ├── 04_RESOURCES/            ← competitor research, raw inputs
+│   └── TODO.md                  ← initialized with empty sections
 ```
 
 **No .gitignore changes needed** (docs are meant to be committed).
 
-Confirm to user: `"Project '{project_id}' initialized. Memory structure ready in docs/00_MEMORY/."`
+Confirm to user: `"Project '{project_id}' initialized. Memory structure ready in docs/00_MEMORY/. PRD docs initialized in docs/02_PRD/ (README + framework-prd.md)."`
 
 ---
 

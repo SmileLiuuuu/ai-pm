@@ -192,7 +192,7 @@ For each core journey in the MVP, explicitly map:
 > - **Action:** Click "One-click Reorder".
 > - **Outcome:** System confirms order placed -> Redirects to Order History with "Pending" status.
 
-**Output:** Record these Core Journeys and MVP Scenarios in the **Framework PRD** (`docs/02_PRD/README.md`). This document serves as the "horizontal glue" that holds all future feature specs together. At this stage, focus on Section 1 (Background & Value Scope) and Section 2 (Critical User Journeys). Sections 3 (Screen Tree) and 4 (Entities) will be filled in during Scenes 3–4 respectively.
+**Output:** Record these Core Journeys and MVP Scenarios in the **Framework PRD**（默认文件例如 `docs/02_PRD/framework-prd.md`，名称可按项目约定调整，而 `docs/02_PRD/README.md` 仅用于说明该目录与各 PRD 文档的用途）。Framework PRD 文档作为后续所有 feature 级 PRD 的「横向胶水」。在这个阶段，重点完成第 1 部分（Background & Value Scope）和第 2 部分（Critical User Journeys），第 3 部分（Screen Tree）和第 4 部分（Entities）会在 Scene 3–4 中逐步补全。
 
 **Stay at the current layer.** Design clarity > velocity. Do not push toward implementation.
 
@@ -497,7 +497,8 @@ At the top of the new file, add:
 │   │   └── SESSION_MEMORY.md        # Session log (append-only)
 │   ├── 01_STRATEGY/                 # 立项与战略记忆：立项文档（价值与范围）+ DECISIONS（详见 references/strategy-foundation.md）
 │   ├── 02_PRD/                      # PRD docs — framework + feature level
-│   │   └── README.md
+│   │   ├── README.md                # 目录说明 & 各 PRD 文件用途
+│   │   └── framework-prd.md         # 默认 Framework PRD 主文档（可按项目约定更名）
 │   ├── 03_DESIGN/                   # 设计与中间产物：PRD 之后、开发之前（详见 references/design-artifacts.md）
 │   │   ├── design-tokens.md
 │   │   ├── screens/                 # 定稿界面
