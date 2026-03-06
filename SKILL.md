@@ -351,6 +351,12 @@ User signals agreement → Log discussion in `SESSION_MEMORY.md` (citing `CONTEX
 **Intent Sniffing**
 User signals uncertainty → Add to `docs/TODO.md` with tag (value / flow / entity / interaction / design).
 
+**Open-item marking in docs（待确认项 / 待定项标识）**
+When writing **any** project document (PRD, strategy, design, handoff, etc.), if there are details or options that need user confirmation or decision, mark them in the document with a **consistent text identifier**, e.g. `[待确认-001]` or `[待定-001]`. Optionally add a short summary table of open items (e.g. at the end of the section or doc). When the user resolves an item, consolidate in the doc (e.g. write the conclusion and cite `[已确认-001]` or `[Answer to 待确认-001]`), then update any dependent content.
+
+**Presenting 待定项 in conversation（对话中交代待定项）**  
+Whenever you introduce or refer to 待定项/待确认项 in the **conversation** (e.g. after writing a doc that contains them), do **not** only say "I recorded N 待定项 in the doc" or list IDs. You must give the user enough context **in the dialogue** so they can decide without opening the file: (1) **Why** this point is open — what depends on it or why it was left undecided; (2) **What** exactly you are asking them to decide — the choice, the options, or the trade-off in user-facing language; (3) where it appears in the doc only as a reference (e.g. "详见 §X" or "在 XX 文档第 N 节"). This is a **global behavior**: document markup keeps things traceable; the conversation keeps the user informed and able to respond in chat.
+
 **Inspiration Triage**
 New idea surfaces: core value → short alignment now; detail → log to TODO, continue.
 
